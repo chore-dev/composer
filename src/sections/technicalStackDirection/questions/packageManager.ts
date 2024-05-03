@@ -5,10 +5,37 @@ import {createList, createListChoice, massageChoices} from "../../../utilities/i
 
 const KEY = 'packageManager' as const;
 
+export const MANAGERS = {
+  npm: {
+    isDefault: false,
+    key: 'npm',
+    label: 'npm',
+    scripts: {
+      install: (isDev = false) => `npm i${isDev ? ' --save-dev' : ' --save'}`
+    }
+  },
+  pnpm: {
+    isDefault: false,
+    key: 'pnpm',
+    label: 'PNPm',
+    scripts: {
+      install: (isDev = false) => `pnpm i${isDev ? ' -D' : ''}`
+    }
+  },
+  yarn: {
+    isDefault: true,
+    key: 'yarn',
+    label: 'Yarn',
+    scripts: {
+      install: (isDev = false) => `yarn add${isDev ? ' -D' : ''}`
+    }
+  }
+} as const;
+
 const CHOICES = [
-  ['npm', 'npm'],
-  ['PNPm', 'pnpm'],
-  ['Yarn', 'yarn', , true]
+  [MANAGERS.npm.label, MANAGERS.npm.key],
+  [MANAGERS.pnpm.label, MANAGERS.pnpm.key],
+  [MANAGERS.yarn.label, MANAGERS.yarn.key, , true]
 ] as const satisfies SimplifiedChoices;
 
 const PACKAGE_MANAGER_QUESTION = {
