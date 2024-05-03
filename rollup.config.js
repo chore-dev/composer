@@ -13,5 +13,5 @@ export default {
     sourcemap: false
   },
   plugins: [json(), typescript(), uglify()],
-  external: ['chalk', 'child_process', 'fs', 'inquirer', 'ora', 'path', 'url']
+  external: ['chalk', 'child_process', 'command-line-args', 'fs', 'inquirer', 'luxon', 'ora', 'path', 'url']
 };

@@ -18,6 +18,4 @@ const TYPESCRIPT_QUESTION = {
 
 export default TYPESCRIPT_QUESTION;
 
-export type TYPESCRIPT_ANSWER = {
-  [TYPESCRIPT_QUESTION.KEY]: AnswerOfCheckbox<ValueOfChoices<typeof TYPESCRIPT_QUESTION>>;
-};
+export type TYPESCRIPT_ANSWER = AnswerOfCheckbox<ValueOfChoices<typeof TYPESCRIPT_QUESTION>>;

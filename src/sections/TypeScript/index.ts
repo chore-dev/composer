@@ -5,6 +5,8 @@ import {shouldContinue} from "../../utilities/inquirer/continue";
 import {section} from "../../utilities/section";
 
 import TYPESCRIPT_QUESTION, {TYPESCRIPT_ANSWER} from "./questions/typescript";
+import CREATE_CONFIG_TASK from "./tasks/config";
+import INSTALL_TASK from "./tasks/install";
 
 const TITLE = 'TypeScript';
 
@@ -21,6 +23,8 @@ export const askTypesScriptQuestions = () => section(TITLE, async () => {
 });
 
 export const doTypesScriptTasks = () => section(TITLE, () => {
+  INSTALL_TASK();
+  CREATE_CONFIG_TASK();
 }, getAnswers().typescript);
 
 export type TYPESCRIPT_ANSWERS = {

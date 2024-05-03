@@ -1,9 +1,9 @@
 import commandLineArgs from 'command-line-args';
 
-const definitions: commandLineArgs.OptionDefinition[] = [
+const definitions = [
   {name: 'dry-run', alias: 'd', type: Boolean},
   {name: 'no-backup', type: Boolean},
-];
+] as const satisfies commandLineArgs.OptionDefinition[];
 
 const keyMap = {
   [definitions[0].name]: 'dryRun',

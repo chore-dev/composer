@@ -1,4 +1,4 @@
-import {copyFileSync, existsSync, mkdirSync, renameSync} from "fs";
+import {copyFileSync, existsSync, mkdirSync, renameSync, writeFileSync} from "fs";
 
 import {getCli} from "../../store/cli.store";
 import {task, warn} from "../logger";
@@ -26,7 +26,15 @@ export const backupBeforeCopy = (from: string, to: string) => {
 
   task([false], `Creating ${to}...`);
   copyFileSync(from, to);
-  task([false, true], `Success!`);
+  task([false, true], `Created!`);
+}
+
+export const writeBeforeWrite = (to: string, content: string | Record<string, unknown>) => {
+  backup(to);
+
+  task([false], `Creating ${to}...`);
+  writeFileSync(to, typeof content === 'string' ? content : JSON.stringify(content, null, 2));
+  task([false, true], `Created!`);
 }
 
 export const isPathExist = (path: string) => existsSync(path);

@@ -17,7 +17,8 @@
     "fs-extra": "^11.2.0",
     "inquirer": "^9.2.20",
     "luxon": "^3.4.4",
-    "ora": "^8.0.1"
+    "ora": "^8.0.1",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
@@ -26,8 +27,7 @@
     "@types/inquirer": "^9.0.7",
     "@types/luxon": "^3.4.2",
     "rollup": "^4.17.1",
-    "rollup-plugin-uglify": "^6.0.4",
-    "typescript": "^5.4.5"
+    "rollup-plugin-uglify": "^6.0.4"
   },
   "author": "Chore Team",
   "contributors": [
