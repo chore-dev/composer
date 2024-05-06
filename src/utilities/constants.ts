@@ -34,3 +34,27 @@ export const APP_FOOTER = () => log([true, true], separator(undefined, 'ALL TASK
 export const FLOW_HEAD = `│\n└─┐`;
 export const FLOW_BODY = "  ├─"
 export const FLOW_TAIL = `┌─┘\n│`;
+
+export const PACKAGE_MANAGERS = {
+  npm: {
+    isDefault: false,
+    label: 'npm',
+    scripts: {
+      install: (isDev = false) => `npm i${isDev ? ' --save-dev' : ' --save'}`
+    }
+  },
+  pnpm: {
+    isDefault: false,
+    label: 'PNPm',
+    scripts: {
+      install: (isDev = false) => `pnpm i${isDev ? ' -D' : ''}`
+    }
+  },
+  yarn: {
+    isDefault: true,
+    label: 'Yarn',
+    scripts: {
+      install: (isDev = false) => `yarn add${isDev ? ' -D' : ''}`
+    }
+  }
+} as const;
