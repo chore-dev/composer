@@ -1,6 +1,6 @@
 import {Prettify} from "../../types";
+import {ONBOARDING_ANSWERS} from "../onboarding";
 import {EDITOR_CONFIG_ANSWERS} from "../sections/EditorConfig";
-import {TECHNICAL_STACK_DIRECTION_ANSWERS} from "../sections/technicalStackDirection";
 import {TYPESCRIPT_ANSWERS} from "../sections/TypeScript";
 
 let ANSWERS = {} as Answers;
@@ -11,4 +11,4 @@ export const updateAnswers = (answers: Partial<Answers>): void => {
   ANSWERS = {...ANSWERS, ...answers};
 }
 
-export type Answers = Prettify<TECHNICAL_STACK_DIRECTION_ANSWERS & EDITOR_CONFIG_ANSWERS & TYPESCRIPT_ANSWERS>
+export type Answers = Prettify<EDITOR_CONFIG_ANSWERS & ONBOARDING_ANSWERS & TYPESCRIPT_ANSWERS>

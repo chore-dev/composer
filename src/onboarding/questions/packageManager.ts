@@ -1,7 +1,7 @@
 import {ListQuestionOptions} from "inquirer";
 
-import {Question, SimplifiedChoices, ValueOfChoices} from "../../../../types";
-import {createList, createListChoice, massageChoices} from "../../../utilities/inquirer";
+import {Question, SimplifiedChoices, ValueOfChoices} from "../../../types";
+import {createList, createListChoice, massageChoices} from "../../utilities/inquirer";
 
 const KEY = 'packageManager' as const;
 

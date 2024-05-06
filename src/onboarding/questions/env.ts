@@ -1,7 +1,7 @@
 import {CheckboxQuestionOptions} from "inquirer";
 
-import {AnswerOfCheckbox, Question, SimplifiedChoices, ValueOfChoices} from "../../../../types";
-import {createCheckbox, createCheckboxChoice, massageChoices} from "../../../utilities/inquirer";
+import {AnswerOfCheckbox, Question, SimplifiedChoices, ValueOfChoices} from "../../../types";
+import {createCheckbox, createCheckboxChoice, massageChoices} from "../../utilities/inquirer";
 
 const KEY = 'env' as const;
 

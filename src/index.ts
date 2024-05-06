@@ -1,7 +1,7 @@
 import {DateTime} from "luxon";
+import {askOnBoardingQuestions} from "./onboarding";
 
 import {askEditorConfigQuestions, doEditorConfigTasks} from "./sections/EditorConfig";
-import {askTechnicalStackDirectionQuestions} from "./sections/technicalStackDirection";
 import {askTypesScriptQuestions, doTypesScriptTasks} from "./sections/TypeScript";
 import {getAnswers} from "./store/answers.store";
 import {updateApplication} from "./store/application.store";
@@ -60,7 +60,7 @@ const isValidEnvironment = async () => {
       if (!await isValidEnvironment()) return resolve();
 
       // Questions
-      await askTechnicalStackDirectionQuestions();
+      await askOnBoardingQuestions();
       await askEditorConfigQuestions();
       await askTypesScriptQuestions();
 

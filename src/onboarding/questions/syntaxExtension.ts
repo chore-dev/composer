@@ -1,7 +1,7 @@
 import {ListQuestionOptions} from "inquirer";
 
-import {Question} from "../../../../types";
-import {createYesNo} from "../../../utilities/inquirer";
+import {Question} from "../../../types";
+import {createYesNo} from "../../utilities/inquirer";
 
 const KEY = 'withSyntaxExtension' as const;
 

@@ -1,6 +1,6 @@
 import {execSync} from 'child_process';
 
-import {MANAGERS} from "../sections/technicalStackDirection/questions/packageManager";
+import {MANAGERS} from "../onboarding/questions/packageManager";
 import {getAnswers} from "../store/answers.store";
 
 import {pwd} from "./fs/constants";
