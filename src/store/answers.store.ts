@@ -11,4 +11,4 @@ export const updateAnswers = (answers: Partial<Answers>): void => {
   ANSWERS = {...ANSWERS, ...answers};
 }
 
-export type Answers = Prettify<EDITOR_CONFIG_ANSWERS & ONBOARDING_ANSWERS & TYPESCRIPT_ANSWERS>
+export type Answers = Prettify<EDITOR_CONFIG_ANSWERS & ONBOARDING_ANSWERS & TYPESCRIPT_ANSWERS>;
