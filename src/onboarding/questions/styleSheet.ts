@@ -1,7 +1,7 @@
-import {ListQuestionOptions} from "inquirer";
+import { ListQuestionOptions } from 'inquirer';
 
-import {Question, SimplifiedChoices, ValueOfChoices} from "../../../types";
-import {createList, createListChoice, massageChoices} from "../../utilities/inquirer";
+import { Question, SimplifiedChoices, ValueOfChoices } from '../../../types';
+import { createList, createListChoice, massageChoices } from '../../utilities/inquirer';
 
 const KEY = 'styleSheet' as const;
 
@@ -14,8 +14,12 @@ const CHOICES = [
 const STYLE_SHEET_QUESTION = {
   KEY,
   CHOICES,
-  OPTIONS: createList(KEY, 'Which style sheet system do you prefer?', massageChoices(CHOICES).map(createListChoice))
-} as const satisfies Question<ListQuestionOptions>
+  OPTIONS: createList(
+    KEY,
+    'Which style sheet system do you prefer?',
+    massageChoices(CHOICES).map(createListChoice)
+  )
+} as const satisfies Question<ListQuestionOptions>;
 
 export default STYLE_SHEET_QUESTION;
 

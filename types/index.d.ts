@@ -8,7 +8,7 @@ import {
   NumberQuestion,
   PasswordQuestion,
   RawListQuestion
-} from "inquirer";
+} from 'inquirer';
 
 type AnswerOfCheckbox<Key extends string> = Record<Key, boolean>;
 
@@ -17,14 +17,24 @@ type Prettify<T> = {
 } & {};
 
 type Question<Options> = {
-  KEY: string,
-  CHOICES?: SimplifiedChoices
-  OPTIONS: Options
-}
+  KEY: string;
+  CHOICES?: SimplifiedChoices;
+  OPTIONS: Options;
+};
 
-type QuestionType = (CheckboxQuestion | ConfirmQuestion | EditorQuestion | ExpandQuestion | InputQuestion | ListQuestion | NumberQuestion | PasswordQuestion | RawListQuestion)['type']
+type QuestionType = (
+  | CheckboxQuestion
+  | ConfirmQuestion
+  | EditorQuestion
+  | ExpandQuestion
+  | InputQuestion
+  | ListQuestion
+  | NumberQuestion
+  | PasswordQuestion
+  | RawListQuestion
+  )['type'];
 
-type ReturnChoicesType<Fn extends (...args: Array<any>) => unknown> = Array<ReturnType<Fn>>
+type ReturnChoicesType<Fn extends (...args: Array<any>) => unknown> = Array<ReturnType<Fn>>;
 
 //                      [label,  value,  short,   checked,  disabled]
 type SimplifiedChoice = [string, string, string?, boolean?, boolean?];

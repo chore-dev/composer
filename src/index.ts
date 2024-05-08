@@ -1,16 +1,16 @@
-import {DateTime} from "luxon";
-import {askOnBoardingQuestions} from "./onboarding";
+import { DateTime } from 'luxon';
 
-import {askEditorConfigQuestions, doEditorConfigTasks} from "./sections/EditorConfig";
-import {askTypesScriptQuestions, doTypesScriptTasks} from "./sections/TypeScript";
-import {getAnswers} from "./store/answers.store";
-import {updateApplication} from "./store/application.store";
-import {getCli} from "./store/cli.store";
-import {APP_FOOTER, APP_HEADER, separator} from "./utilities/constants";
-import {isPathExist} from "./utilities/fs";
-import {pwd} from "./utilities/fs/constants";
-import {shouldContinue} from "./utilities/inquirer/continue";
-import {box, error, log} from "./utilities/logger";
+import { askOnBoardingQuestions } from './onboarding';
+import { askEditorConfigQuestions, doEditorConfigTasks } from './sections/EditorConfig';
+import { askTypesScriptQuestions, doTypesScriptTasks } from './sections/TypeScript';
+import { getAnswers } from './store/answers.store';
+import { updateApplication } from './store/application.store';
+import { getCli } from './store/cli.store';
+import { APP_FOOTER, APP_HEADER, separator } from './utilities/constants';
+import { isPathExist } from './utilities/fs';
+import { PWD } from './utilities/fs/constants';
+import { shouldContinue } from './utilities/inquirer/continue';
+import { box, error, log } from './utilities/logger';
 
 APP_HEADER();
 
@@ -23,41 +23,35 @@ const isDryRun = () => {
   }
 
   return false;
-}
+};
 
 const isValidEnvironment = async () => {
   let valid = true;
 
-  if (!isPathExist(pwd('./package.json'))) {
+  if (!isPathExist(PWD('./package.json'))) {
     error([true], `package.json not found`);
     error([false], `Please be sure to run composer under the root directory.`);
     error([true], `or`);
     error([true], `If you are already in the root directory`);
     error([false], `Initialize a new project by running:`);
-    box(error, [false], [
-      '$ npm init      ',
-      '',
-      '# or',
-      '',
-      '$ pnpm init',
-      '',
-      '# or',
-      '',
-      '$ yarn init'
-    ]);
+    box(
+      error,
+      [false],
+      ['$ npm init      ', '', '# or', '', '$ pnpm init', '', '# or', '', '$ yarn init']
+    );
 
-    valid = false
+    valid = false;
   }
 
   return valid;
-}
+};
 
 (async () => {
-  new Promise<void>(async (resolve) => {
-    updateApplication({datetime: DateTime.now().toFormat('yyyy-MM-dd_HH-mm-ss')});
+  new Promise<void>(async resolve => {
+    updateApplication({ datetime: DateTime.now().toFormat('yyyy-MM-dd_HH-mm-ss') });
 
     try {
-      if (!await isValidEnvironment()) return resolve();
+      if (!(await isValidEnvironment())) return resolve();
 
       // Questions
       await askOnBoardingQuestions();

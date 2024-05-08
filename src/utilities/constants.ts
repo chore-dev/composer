@@ -1,6 +1,6 @@
-import {version} from "../../package.json";
+import { version } from '../../package.json';
 
-import {log, underline} from "./logger";
+import { log, underline } from './logger';
 
 const MAX_LENGTH = 85;
 
@@ -11,9 +11,12 @@ export const separator = (count = MAX_LENGTH, text?: string) => {
   } else {
     return '='.repeat(count);
   }
-}
+};
 
-export const APP_HEADER = () => log([true], `${separator()}
+export const APP_HEADER = () =>
+  log(
+    [true],
+    `${separator()}
 
    █████╗    █████╗   ███╗   ███╗  ██████╗    █████╗    ██████╗  ███████╗  ██████╗
   ██╔══██╗  ██╔══██╗  ████╗ ████║  ██╔══██╗  ██╔══██╗  ██╔════╝  ██╔════╝  ██╔══██╗
@@ -27,12 +30,13 @@ export const APP_HEADER = () => log([true], `${separator()}
   | Dir : ${underline(process.cwd())}
   | Node: ${underline(process.version)}
 
-${separator()}`)
+${separator()}`
+  );
 
-export const APP_FOOTER = () => log([true, true], separator(undefined, 'ALL TASK(S) COMPLETED'))
+export const APP_FOOTER = () => log([true, true], separator(undefined, 'ALL TASK(S) COMPLETED'));
 
 export const FLOW_HEAD = `│\n└─┐`;
-export const FLOW_BODY = "  ├─"
+export const FLOW_BODY = '  ├─';
 export const FLOW_TAIL = `┌─┘\n│`;
 
 export const PACKAGE_MANAGERS = {
@@ -40,21 +44,24 @@ export const PACKAGE_MANAGERS = {
     isDefault: false,
     label: 'npm',
     scripts: {
-      install: (isDev = false) => `npm i${isDev ? ' --save-dev' : ' --save'}`
+      install: (isDev = false) => `npm i${isDev ? ' --save-dev' : ' --save'}`,
+      run: 'npm run'
     }
   },
   pnpm: {
     isDefault: false,
     label: 'PNPm',
     scripts: {
-      install: (isDev = false) => `pnpm i${isDev ? ' -D' : ''}`
+      install: (isDev = false) => `pnpm i${isDev ? ' -D' : ''}`,
+      run: 'pnpm run'
     }
   },
   yarn: {
     isDefault: true,
     label: 'Yarn',
     scripts: {
-      install: (isDev = false) => `yarn add${isDev ? ' -D' : ''}`
+      install: (isDev = false) => `yarn add${isDev ? ' -D' : ''}`,
+      run: 'yarn'
     }
   }
 } as const;

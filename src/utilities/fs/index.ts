@@ -1,9 +1,9 @@
-import {copyFileSync, existsSync, mkdirSync, renameSync, writeFileSync} from "fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'fs';
 
-import {getCli} from "../../store/cli.store";
-import {task, warn} from "../logger";
+import { getCli } from '../../store/cli.store';
+import { task, warn } from '../logger';
 
-import {backupDirectory, datetimeDirectory} from "./constants";
+import { backupDirectory, datetimeDirectory, PWD } from './constants';
 
 const backup = (path: string) => {
   if (!getCli().noBackup) {
@@ -19,7 +19,7 @@ const backup = (path: string) => {
       warn([false], `Backup successful! Please find backup file(s) in ${datetimeDirectory()}`);
     }
   }
-}
+};
 
 export const backupBeforeCopy = (from: string, to: string) => {
   backup(to);
@@ -27,7 +27,11 @@ export const backupBeforeCopy = (from: string, to: string) => {
   task([false], `Creating ${to}...`);
   copyFileSync(from, to);
   task([false, true], `Created!`);
-}
+};
+
+export const readPackageJson = () => {
+  return JSON.parse(readFileSync(`${PWD()}/package.json`, 'utf8'));
+};
 
 export const writeBeforeWrite = (to: string, content: string | Record<string, unknown>) => {
   backup(to);
@@ -35,6 +39,6 @@ export const writeBeforeWrite = (to: string, content: string | Record<string, un
   task([false], `Creating ${to}...`);
   writeFileSync(to, typeof content === 'string' ? content : JSON.stringify(content, null, 2));
   task([false, true], `Created!`);
-}
+};
 
 export const isPathExist = (path: string) => existsSync(path);

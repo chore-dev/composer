@@ -1,8 +1,8 @@
-import {getAnswers} from "../../../store/answers.store";
+import { getAnswers } from '../../../store/answers.store';
 
 // Read https://www.typescriptlang.org/tsconfig for more information about tsconfig.json
 const createTsConfigJson = () => {
-  const {withSyntaxExtension} = getAnswers();
+  const { withSyntaxExtension } = getAnswers();
 
   return {
     exclude: [
@@ -54,7 +54,7 @@ const createTsConfigJson = () => {
 
       /** Language and Environment **/
       experimentalDecorators: true,
-      ...(withSyntaxExtension ? {jsx: 'react-jsx'} : {}),
+      ...(withSyntaxExtension ? { jsx: 'react-jsx' } : {}),
       lib: ['DOM', 'DOM.Iterable', 'ESNext', 'WebWorker'],
       target: 'esnext',
 
@@ -88,7 +88,7 @@ const createTsConfigJson = () => {
     },
     watchOptions: {},
     typeAcquisition: {}
-  }
+  };
 };
 
 export default createTsConfigJson;

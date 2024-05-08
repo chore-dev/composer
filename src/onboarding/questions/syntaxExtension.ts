@@ -1,14 +1,14 @@
-import {ListQuestionOptions} from "inquirer";
+import { ListQuestionOptions } from 'inquirer';
 
-import {Question} from "../../../types";
-import {createYesNo} from "../../utilities/inquirer";
+import { Question } from '../../../types';
+import { createYesNo } from '../../utilities/inquirer';
 
 const KEY = 'withSyntaxExtension' as const;
 
 const SYNTAX_EXTENSION_QUESTION = {
   KEY,
   OPTIONS: createYesNo(KEY, 'Do you use JS/TS syntax extension(JSX/TSX)?')
-} as const satisfies Question<ListQuestionOptions>
+} as const satisfies Question<ListQuestionOptions>;
 
 export default SYNTAX_EXTENSION_QUESTION;
 

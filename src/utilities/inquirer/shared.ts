@@ -1,4 +1,4 @@
-import {QuestionType, SimplifiedChoices} from "../../../types";
+import { QuestionType, SimplifiedChoices } from '../../../types';
 
 export const basic = (type: QuestionType, key: string, question: string) => ({
   message: question,
@@ -12,6 +12,6 @@ export const massageChoices = <Choices extends SimplifiedChoices>(choices: Choic
     disabled,
     label,
     short,
-    value,
-  }))
-}
+    value
+  }));
+};

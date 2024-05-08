@@ -1,7 +1,7 @@
-import {CheckboxQuestionOptions} from "inquirer";
+import { CheckboxQuestionOptions } from 'inquirer';
 
-import {AnswerOfCheckbox, Question, SimplifiedChoices, ValueOfChoices} from "../../../../types";
-import {createCheckbox, createCheckboxChoice, massageChoices} from "../../../utilities/inquirer";
+import { AnswerOfCheckbox, Question, SimplifiedChoices, ValueOfChoices } from '../../../../types';
+import { createCheckbox, createCheckboxChoice, massageChoices } from '../../../utilities/inquirer';
 
 const KEY = 'typescript' as const;
 
@@ -13,8 +13,12 @@ const CHOICES = [
 const TYPESCRIPT_QUESTION = {
   KEY,
   CHOICES,
-  OPTIONS: createCheckbox(KEY, 'Please check the item(s) you need', massageChoices(CHOICES).map(createCheckboxChoice))
-} as const satisfies Question<CheckboxQuestionOptions>
+  OPTIONS: createCheckbox(
+    KEY,
+    'Please check the item(s) you need',
+    massageChoices(CHOICES).map(createCheckboxChoice)
+  )
+} as const satisfies Question<CheckboxQuestionOptions>;
 
 export default TYPESCRIPT_QUESTION;
 
