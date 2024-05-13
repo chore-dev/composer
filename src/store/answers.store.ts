@@ -1,9 +1,10 @@
-import { Prettify } from '../../types';
+import { Prettify } from '@chore-dev/utility-types';
+
 import { ONBOARDING_ANSWERS } from '../onboarding';
-import { EDITOR_CONFIG_ANSWERS } from '../sections/EditorConfig';
-import { ESLINT_ANSWERS } from '../sections/ESLint';
-import { PRETTIER_ANSWERS } from '../sections/Prettier';
-import { TYPESCRIPT_ANSWERS } from '../sections/TypeScript';
+import { EDITOR_CONFIG_ANSWERS } from '../packages/EditorConfig';
+import { ESLINT_ANSWERS } from '../packages/ESLint';
+import { PRETTIER_ANSWERS } from '../packages/Prettier';
+import { TYPESCRIPT_ANSWERS } from '../packages/TypeScript';
 
 let ANSWERS = {} as Answers;
 

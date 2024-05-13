@@ -1,5 +1,5 @@
 {
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["dist", "node_modules"],
   "include": ["**/*.d.ts", "**/*.js", "**/*.ts", "types"],
   "compilerOptions": {
     "skipLibCheck": true,

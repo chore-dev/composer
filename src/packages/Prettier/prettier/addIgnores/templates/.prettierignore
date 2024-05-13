@@ -1,0 +1,12 @@
+# Node.js / npm / Yarn
+node_modules/
+
+# Build output directory
+/coverage
+/build
+/bundle
+/dist
+/out
+
+# Build output files
+.eslintcache

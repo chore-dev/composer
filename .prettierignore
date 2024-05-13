@@ -1,0 +1,16 @@
+# Backup files
+*.bak
+
+# Build output directory
+/coverage
+/build
+/bundle
+/dist
+/out
+
+# Cache
+.eslintcache
+.rollup.cache
+
+# Node.js / npm / Yarn
+node_modules/

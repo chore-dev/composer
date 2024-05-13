@@ -12,10 +12,6 @@ import {
 
 type AnswerOfCheckbox<Key extends string> = Record<Key, boolean>;
 
-type Prettify<T> = {
-  [K in keyof T]: T[K];
-} & {};
-
 type Question<Options> = {
   KEY: string;
   CHOICES?: SimplifiedChoices;
@@ -32,7 +28,7 @@ type QuestionType = (
   | NumberQuestion
   | PasswordQuestion
   | RawListQuestion
-  )['type'];
+)['type'];
 
 type ReturnChoicesType<Fn extends (...args: Array<any>) => unknown> = Array<ReturnType<Fn>>;
 
@@ -42,3 +38,16 @@ type SimplifiedChoice = [string, string, string?, boolean?, boolean?];
 type SimplifiedChoices = Array<SimplifiedChoice>;
 
 type ValueOfChoices<Q extends Question<unknown>> = NonNullable<Q['CHOICES']>[number][1];
+
+// Refactor
+
+type CheckboxAnswers<Key extends string> = Record<Key, boolean>;
+
+type Choice<C extends Collection<unknown>> = NonNullable<C['CHOICES']>[number][1];
+
+type Collection<QuestionOptions> = {
+  CHOICES?: SimplifiedChoices;
+  KEY: string;
+  QUESTION: QuestionOptions;
+  TASK?: () => void;
+};

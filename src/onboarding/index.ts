@@ -1,27 +1,28 @@
+import { Prettify } from '@chore-dev/utility-types';
 import inquirer from 'inquirer';
 
-import { Prettify } from '../../types';
 import { updateAnswers } from '../store/answers.store';
 import { section } from '../utilities/section';
 
-import ENV_QUESTION, { ENV_ANSWER } from './questions/env';
-import FRAMEWORK_QUESTION, { FRAMEWORK_ANSWER } from './questions/framework';
-import PACKAGE_MANAGER_QUESTION, { PACKAGE_MANAGER_ANSWER } from './questions/packageManager';
-import STYLE_SHEET_QUESTION, { STYLE_SHEET_ANSWER } from './questions/styleSheet';
-import SYNTAX_EXTENSION_QUESTION, { SYNTAX_EXTENSION_ANSWER } from './questions/syntaxExtension';
+import ENV, { ENV_ANSWER } from './env';
+import FRAMEWORK, { FRAMEWORK_ANSWER } from './framework';
+import PACKAGE_MANAGER, { PACKAGE_MANAGER_ANSWER } from './packageManager';
+import STYLE_SHEET, { STYLE_SHEET_ANSWER } from './styleSheet';
+import SYNTAX_EXTENSION, { SYNTAX_EXTENSION_ANSWER } from './syntaxExtension';
 
-export const askOnBoardingQuestions = () =>
-  section('Onboarding Questions', async () => {
+export const onBoardingQuestions = () => {
+  return section('Onboarding Questions', async () => {
     updateAnswers(
       await inquirer.prompt([
-        PACKAGE_MANAGER_QUESTION.OPTIONS,
-        ENV_QUESTION.OPTIONS,
-        FRAMEWORK_QUESTION.OPTIONS,
-        SYNTAX_EXTENSION_QUESTION.OPTIONS,
-        STYLE_SHEET_QUESTION.OPTIONS
+        PACKAGE_MANAGER.QUESTION,
+        ENV.QUESTION,
+        FRAMEWORK.QUESTION,
+        SYNTAX_EXTENSION.QUESTION,
+        STYLE_SHEET.QUESTION
       ])
     );
   });
+};
 
 export type ONBOARDING_ANSWERS = Prettify<
   ENV_ANSWER &

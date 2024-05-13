@@ -1,8 +1,10 @@
 import { DateTime } from 'luxon';
 
-import { askOnBoardingQuestions } from './onboarding';
-import { askEditorConfigQuestions, doEditorConfigTasks } from './sections/EditorConfig';
-import { askTypesScriptQuestions, doTypesScriptTasks } from './sections/TypeScript';
+import { onBoardingQuestions } from './onboarding';
+import { editorConfigQuestions, editorConfigTasks } from './packages/EditorConfig';
+import { esLintQuestions, esLintTasks } from './packages/ESLint';
+import { prettierQuestions, prettierTasks } from './packages/Prettier';
+import { typeScriptQuestions, typeScriptTasks } from './packages/TypeScript';
 import { getAnswers } from './store/answers.store';
 import { updateApplication } from './store/application.store';
 import { getCli } from './store/cli.store';
@@ -48,15 +50,19 @@ const isValidEnvironment = async () => {
 
 (async () => {
   new Promise<void>(async resolve => {
-    updateApplication({ datetime: DateTime.now().toFormat('yyyy-MM-dd_HH-mm-ss') });
+    updateApplication({
+      datetime: DateTime.now().toFormat('yyyy-MM-dd_HH-mm-ss')
+    });
 
     try {
       if (!(await isValidEnvironment())) return resolve();
 
       // Questions
-      await askOnBoardingQuestions();
-      await askEditorConfigQuestions();
-      await askTypesScriptQuestions();
+      await onBoardingQuestions();
+      await editorConfigQuestions();
+      await typeScriptQuestions();
+      await esLintQuestions();
+      await prettierQuestions();
 
       if (isDryRun()) return resolve();
 
@@ -67,8 +73,10 @@ const isValidEnvironment = async () => {
       log([true], separator(undefined, 'TASK(S) STARTED'));
 
       // Tasks
-      await doEditorConfigTasks();
-      await doTypesScriptTasks();
+      await editorConfigTasks();
+      await typeScriptTasks();
+      await esLintTasks();
+      await prettierTasks();
 
       resolve();
     } catch (e) {

@@ -1,3 +1,6 @@
+.composer.bak
+.rollup.cache
+
 # Logs
 logs
 *.log

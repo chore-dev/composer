@@ -5,10 +5,9 @@ import { getApplication } from '../../store/application.store';
 
 const BACKUP_DIRECTORY = '.composer.bak';
 
-const directoryResolverBuilder =
-  (root: string | RootFn) =>
-  (path = './') =>
-    resolve(typeof root === 'function' ? root() : root, path);
+const directoryResolverBuilder = (root: string | RootFn) => {
+  return (path = './') => resolve(typeof root === 'function' ? root() : root, path);
+};
 
 // NOTE: This points to the current working directory,
 //       DO NOT declare other path related function before this.
@@ -24,15 +23,14 @@ export const DIST = directoryResolverBuilder(dirname(fileURLToPath(import.meta.u
 
 export const backupDirectory = directoryResolverBuilder(PWD(`./${BACKUP_DIRECTORY}`));
 
-export const datetimeDirectory = directoryResolverBuilder(() =>
-  backupDirectory(getApplication().datetime)
-);
+export const datetimeDirectory = directoryResolverBuilder(() => {
+  return backupDirectory(getApplication().datetime);
+});
 
-export const templateDirectory = (folder: keyof Templates, file: Templates[keyof Templates]) =>
-  DIST(`../src/sections/${folder}/templates/${file}`);
-
-interface Templates {
-  EditorConfig: '.editorconfig';
-}
+export const templateDirectory = (file: Templates) => {
+  return DIST(`./templates/${file}`);
+};
 
 type RootFn = () => string;
+
+type Templates = '.editorconfig' | '.prettierignore';
