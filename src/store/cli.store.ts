@@ -1,8 +1,9 @@
 import commandLineArgs from 'command-line-args';
 
 const definitions = [
-  { name: 'dry-run', alias: 'd', type: Boolean },
-  { name: 'no-backup', type: Boolean }
+  { name: 'dry-run', alias: 'D', type: Boolean },
+  { name: 'no-backup', type: Boolean },
+  { name: 'preset', alias: 'P', type: String }
 ] as const satisfies commandLineArgs.OptionDefinition[];
 
 const keyMap = {
@@ -22,4 +23,5 @@ export const getCli = () => CLI;
 type Cli = {
   dryRun: boolean;
   noBackup: boolean;
+  preset: string;
 };

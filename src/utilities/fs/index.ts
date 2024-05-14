@@ -29,9 +29,9 @@ export const backupBeforeCopy = (from: string, to: string) => {
   task([false, true], `Created!`);
 };
 
-export const readPackageJson = () => {
-  return JSON.parse(readFileSync(`${PWD()}/package.json`, 'utf8'));
-};
+export const readJson = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
+
+export const readPackageJson = () => readJson(PWD('./package.json'));
 
 export const writeBeforeWrite = (to: string, content: string | Record<string, unknown>) => {
   backup(to);

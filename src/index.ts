@@ -5,16 +5,44 @@ import { editorConfigQuestions, editorConfigTasks } from './packages/EditorConfi
 import { esLintQuestions, esLintTasks } from './packages/ESLint';
 import { prettierQuestions, prettierTasks } from './packages/Prettier';
 import { typeScriptQuestions, typeScriptTasks } from './packages/TypeScript';
-import { getAnswers } from './store/answers.store';
+import { getAnswers, updateAnswers } from './store/answers.store';
 import { updateApplication } from './store/application.store';
 import { getCli } from './store/cli.store';
 import { APP_FOOTER, APP_HEADER, separator } from './utilities/constants';
-import { isPathExist } from './utilities/fs';
+import { isPathExist, readJson } from './utilities/fs';
 import { PWD } from './utilities/fs/constants';
 import { shouldContinue } from './utilities/inquirer/continue';
-import { box, error, log } from './utilities/logger';
+import { box, error, log, warn } from './utilities/logger';
 
 APP_HEADER();
+
+const isAnswered = () => {
+  const path = getCli().preset;
+
+  if (!path) return false;
+
+  const pathFromPwd = PWD(path);
+
+  if (!pathFromPwd.endsWith('.json')) {
+    error([true], 'The preset file you provided is not a JSON file');
+    error([false], 'The JSON format should be same as the output of dry run,');
+    error([false], 'Use the --dry-run / -D to generate a preset json');
+    throw new Error('INVALID_PRESET_FILE');
+  }
+
+  if (isPathExist(pathFromPwd)) {
+    updateAnswers(readJson(pathFromPwd));
+    log([true], 'You provided the following preset:');
+    log([true], getAnswers());
+
+    return true;
+  } else {
+    warn([true], `No answers found at ${path}`);
+    warn([false], `Fallback to manual input...`);
+
+    return false;
+  }
+};
 
 const isDryRun = () => {
   if (getCli().dryRun) {
@@ -57,12 +85,14 @@ const isValidEnvironment = async () => {
     try {
       if (!(await isValidEnvironment())) return resolve();
 
-      // Questions
-      await onBoardingQuestions();
-      await editorConfigQuestions();
-      await typeScriptQuestions();
-      await esLintQuestions();
-      await prettierQuestions();
+      if (!isAnswered()) {
+        // Questions
+        await onBoardingQuestions();
+        await editorConfigQuestions();
+        await typeScriptQuestions();
+        await esLintQuestions();
+        await prettierQuestions();
+      }
 
       if (isDryRun()) return resolve();
 
