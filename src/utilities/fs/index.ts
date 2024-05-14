@@ -6,19 +6,19 @@ import { task, warn } from '../logger';
 import { backupDirectory, datetimeDirectory, PWD } from './constants';
 
 const backup = (path: string) => {
-  if (!getCli().noBackup) {
-    if (isPathExist(path)) {
-      if (!isPathExist(backupDirectory())) mkdirSync(backupDirectory());
-      if (!isPathExist(datetimeDirectory())) mkdirSync(datetimeDirectory());
+  if (getCli().noBackup || !isPathExist(path)) return;
 
-      const filename = path.split('/').pop();
+  if (!isPathExist(backupDirectory())) mkdirSync(backupDirectory());
+  if (!isPathExist(datetimeDirectory())) mkdirSync(datetimeDirectory());
 
-      warn([false], `Existing ${filename} under ${path} found`);
-      warn([false], `Backing up...`);
-      renameSync(path, datetimeDirectory(`./${filename}`));
-      warn([false], `Backup successful! Please find backup file(s) in ${datetimeDirectory()}`);
-    }
-  }
+  const filename = path.split('/').pop();
+
+  if (isPathExist(datetimeDirectory(`./${filename}`))) return;
+
+  warn([false], `Existing ${filename} under ${path} found`);
+  warn([false], `Backing up...`);
+  renameSync(path, datetimeDirectory(`./${filename}`));
+  warn([false], `Backup successful! Please find backup file(s) in ${datetimeDirectory()}`);
 };
 
 export const backupBeforeCopy = (from: string, to: string) => {
