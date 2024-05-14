@@ -2,7 +2,7 @@ import { getAnswers } from '../../../../store/answers.store';
 import { addScriptToPackageJson, managerRun } from '../../../../utilities/cli';
 
 const insertScripts = () => {
-  const { env, prettier, styleSheet, typescript, withSyntaxExtension } = getAnswers();
+  const { env, eslint, prettier, styleSheet, typescript, withSyntaxExtension } = getAnswers();
 
   if (!prettier) return;
 
@@ -22,14 +22,22 @@ const insertScripts = () => {
     .filter(Boolean)
     .join(',');
 
-  addScriptToPackageJson([
+  const scripts: Array<[string, string]> = [
     ['// Prettier', '---------- ---------- ---------- ---------- ----------'],
     ['prettier', managerRun('prettier:base -c')],
     ['prettier:base', `prettier './**/*.{${extensions}}' --cache${config}${ignore}`],
     ['prettier:fix', managerRun('prettier:base -w')]
-  ]);
+  ];
 
-  // TODO: Add prettier & lint script
+  if (eslint) {
+    scripts.push(
+      ['// Format', '---------- ---------- ---------- ---------- ----------'],
+      ['format', `${managerRun('eslint')}; ${managerRun('prettier')}`],
+      ['format:fix', `${managerRun('eslint:fix')}; ${managerRun('prettier:fix')}`]
+    );
+  }
+
+  addScriptToPackageJson(scripts);
 };
 
 export default insertScripts;
