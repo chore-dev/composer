@@ -3,14 +3,14 @@ import { createList, createListChoice, massageChoices } from '../../utilities/in
 
 export const CHOICES = [
   ['React', 'react', , true],
-  ['Vue', 'vue'],
-  ['Non of the above', 'none']
+  ['Vue.js', 'vue'],
+  ['Non of these', 'none']
 ] as const satisfies SimplifiedChoices;
 
 export const QUESTION = (key: string) => {
   return createList(
     key,
-    'Which framework do your prefer?',
+    'Which framework does your project use?',
     massageChoices(CHOICES).map(createListChoice)
   );
 };
