@@ -11,7 +11,6 @@ const config = {
   quoteProps: 'as-needed',
   semi: true,
   singleAttributePerLine: true,
-  singleQuote: true,
   trailingComma: 'none',
   overrides: [
     {

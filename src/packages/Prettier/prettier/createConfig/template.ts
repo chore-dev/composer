@@ -20,10 +20,10 @@ const createPrettierConfig = () => {
     quoteProps: 'as-needed',
     semi: true,
     singleAttributePerLine: true,
-    singleQuote: true,
-    // tabWidth: refer to indent_size in .editorconfig file
+    // singleQuote: refer to quote_type in .editorconfig file,
+    // tabWidth: refer to indent_size in .editorconfig file,
     trailingComma: 'none',
-    // useTabs: refer to indent_style in .editorconfig file
+    // useTabs: refer to indent_style in .editorconfig file,
     overrides: [
       {
         files: ['*.md', '*.mdx'],

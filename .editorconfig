@@ -13,6 +13,9 @@ end_of_line = lf
 indent_size = 2
 indent_style = space
 max_line_length = 100
+# ↓ This is not an official properties of EditorConfig, but seems prettier will respect this
+#   Read more: https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties#ideas-for-domain-specific-properties
+quote_type = single
 trim_trailing_whitespace = true
 
 [*.md]
