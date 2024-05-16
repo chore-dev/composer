@@ -1,7 +1,7 @@
 import { readPackageJson } from './fs';
 
 export const condition = <Value = unknown>(condition: unknown, value: Value) => {
-  return !!condition ? value : undefined;
+  return condition ? value : undefined;
 };
 
 export const exportByPackageType = (variable: string) => {

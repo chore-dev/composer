@@ -55,7 +55,7 @@ const isDryRun = () => {
   return false;
 };
 
-const isValidEnvironment = async () => {
+const isValidEnvironment = () => {
   let valid = true;
 
   if (!isPathExist(PWD('./package.json'))) {
@@ -77,48 +77,44 @@ const isValidEnvironment = async () => {
 };
 
 (async () => {
-  new Promise<void>(async resolve => {
-    updateApplication({
-      datetime: DateTime.now().toFormat('yyyy-MM-dd_HH-mm-ss')
-    });
-
-    try {
-      if (!(await isValidEnvironment())) return resolve();
-
-      if (!isAnswered()) {
-        // Questions
-        await onBoardingQuestions();
-        await editorConfigQuestions();
-        await typeScriptQuestions();
-        await esLintQuestions();
-        await prettierQuestions();
-      }
-
-      if (isDryRun()) return resolve();
-
-      log([true], separator());
-      log([true], `ℹ Before proceed to the next step, please review the answers you have given`);
-      if (!(await shouldContinue())) return resolve();
-
-      log([true], separator(undefined, 'TASK(S) STARTED'));
-
-      // Tasks
-      await editorConfigTasks();
-      await typeScriptTasks();
-      await esLintTasks();
-      await prettierTasks();
-
-      resolve();
-    } catch (e) {
-      const _error = e as Error & Record<string, unknown>;
-
-      if (_error.isTtyError) {
-        error([true], `Prompt couldn't be rendered in the current environment`);
-      } else {
-        error([true], `Something went wrong: ${_error}`);
-      }
-    }
-  }).finally(() => {
-    APP_FOOTER();
+  updateApplication({
+    datetime: DateTime.now().toFormat('yyyy-MM-dd_HH-mm-ss')
   });
+
+  try {
+    if (!isValidEnvironment()) return APP_FOOTER();
+
+    if (!isAnswered()) {
+      // Questions
+      await onBoardingQuestions();
+      await editorConfigQuestions();
+      await typeScriptQuestions();
+      await esLintQuestions();
+      await prettierQuestions();
+    }
+
+    if (isDryRun()) return APP_FOOTER();
+
+    log([true], separator());
+    log([true], `ℹ Before proceed to the next step, please review the answers you have given`);
+    if (!(await shouldContinue())) return APP_FOOTER();
+
+    log([true], separator(undefined, 'TASK(S) STARTED'));
+
+    // Tasks
+    await editorConfigTasks();
+    await typeScriptTasks();
+    await esLintTasks();
+    await prettierTasks();
+
+    APP_FOOTER();
+  } catch (e) {
+    const _error = e as Error & Record<string, unknown>;
+
+    if (_error.isTtyError) {
+      error([true], `Prompt couldn't be rendered in the current environment`);
+    } else {
+      error([true], `Something went wrong: ${_error}`);
+    }
+  }
 })();

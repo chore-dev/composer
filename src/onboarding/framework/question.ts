@@ -2,7 +2,7 @@ import { SimplifiedChoices } from '../../../types';
 import { createList, createListChoice, massageChoices } from '../../utilities/inquirer';
 
 export const CHOICES = [
-  ['React', 'react', , true],
+  ['React', 'react', undefined, true],
   ['Vue.js', 'vue'],
   ['Non of these', 'none']
 ] as const satisfies SimplifiedChoices;

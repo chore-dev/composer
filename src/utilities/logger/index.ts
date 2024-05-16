@@ -1,24 +1,26 @@
 import chalk, { ChalkInstance } from 'chalk';
 
+const CONSOLE = console;
+
 let avoidDuplicateLinebreak = false;
 
 export const underline = chalk.underline;
 
-const loggerBuilder =
-  (prefix = '', chalk?: ChalkInstance) =>
-  (linebreak: [boolean, boolean?], ...args: unknown[]) => {
+const loggerBuilder = (prefix = '', chalk?: ChalkInstance) => {
+  return (linebreak: [boolean, boolean?], ...args: unknown[]) => {
     const [before, after = false] = linebreak;
 
-    if (!avoidDuplicateLinebreak && before) console.log('');
+    if (!avoidDuplicateLinebreak && before) CONSOLE.log('');
     if (chalk) {
-      console.log(chalk(...[...(prefix ? [`[${prefix}]`] : []), ...args]));
+      CONSOLE.log(chalk(...[...(prefix ? [`[${prefix}]`] : []), ...args]));
     } else {
-      console.log(...[...(prefix ? [`[${prefix}]`] : []), ...args]);
+      CONSOLE.log(...[...(prefix ? [`[${prefix}]`] : []), ...args]);
     }
-    if (after) console.log('');
+    if (after) CONSOLE.log('');
 
     avoidDuplicateLinebreak = after;
   };
+};
 
 export const box = (
   logger: ReturnType<typeof loggerBuilder>,

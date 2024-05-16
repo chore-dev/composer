@@ -3,7 +3,7 @@ import { createList, createListChoice, massageChoices } from '../../utilities/in
 
 export const CHOICES = [
   ['CSS', 'css'],
-  ['SCSS', 'scss', , true],
+  ['SCSS', 'scss', undefined, true],
   ['No style sheet needed', 'none']
 ] as const satisfies SimplifiedChoices;
 

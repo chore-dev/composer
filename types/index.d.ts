@@ -30,6 +30,8 @@ type QuestionType = (
   | RawListQuestion
 )['type'];
 
+// @ts-ignore NOTE: using any because the one thing we care about is to make sure that Fn is a function, no matter the arguments
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ReturnChoicesType<Fn extends (...args: Array<any>) => unknown> = Array<ReturnType<Fn>>;
 
 //                      [label,  value,  short,   checked,  disabled]

@@ -11,7 +11,7 @@ const keyMap = {
   [definitions[1].name]: 'noBackup'
 } as const;
 
-let CLI = Object.fromEntries(
+const CLI = Object.fromEntries(
   Object.entries(commandLineArgs(definitions)).map(([key, value]) => [
     keyMap[key as keyof typeof keyMap] || key,
     value

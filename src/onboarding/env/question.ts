@@ -2,7 +2,7 @@ import { SimplifiedChoices } from '../../../types';
 import { createCheckbox, createCheckboxChoice, massageChoices } from '../../utilities/inquirer';
 
 export const CHOICES = [
-  ['Browser', 'isBrowser', , true],
+  ['Browser', 'isBrowser', undefined, true],
   ['Node', 'isNode']
 ] as const satisfies SimplifiedChoices;
 
