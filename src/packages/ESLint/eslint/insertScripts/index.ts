@@ -12,7 +12,7 @@ const insertScripts = () => {
 
   addScriptToPackageJson([
     ['// ESLint', '---------- ---------- ---------- ---------- ----------'],
-    ['eslint', `eslint --cache --color${config}`],
+    ['eslint', `eslint . --cache --color${config}`],
     ['eslint:fix', managerRun('eslint --fix --quiet')]
   ]);
 };
