@@ -10,14 +10,6 @@ import {
   RawListQuestion
 } from 'inquirer';
 
-type AnswerOfCheckbox<Key extends string> = Record<Key, boolean>;
-
-type Question<Options> = {
-  KEY: string;
-  CHOICES?: SimplifiedChoices;
-  OPTIONS: Options;
-};
-
 type QuestionType = (
   | CheckboxQuestion
   | ConfirmQuestion
@@ -38,8 +30,6 @@ type ReturnChoicesType<Fn extends (...args: Array<any>) => unknown> = Array<Retu
 type SimplifiedChoice = [string, string, string?, boolean?, boolean?];
 
 type SimplifiedChoices = Array<SimplifiedChoice>;
-
-type ValueOfChoices<Q extends Question<unknown>> = NonNullable<Q['CHOICES']>[number][1];
 
 // Refactor
 
