@@ -107,19 +107,28 @@ const main = () => {
   const rules = (
     [
       ['import/no-duplicates', 0],
-      ['no-console', 0],
+      ['no-console', 2, JSON.stringify({ allow: ['error', 'warn'] })],
       ...(condition(framework === 'react', [
         ['react/jsx-uses-react', 0],
         condition(typescript, ['react/prop-types', 2]),
         ['react/react-in-jsx-scope', 0]
       ]) || []),
       ...(condition(typescript, [
-        ['@typescript-eslint/ban-ts-comment', 0],
+        [
+          '@typescript-eslint/ban-ts-comment',
+          2,
+          JSON.stringify({
+            'ts-check': 'allow-with-description',
+            'ts-expect-error': 'allow-with-description',
+            'ts-ignore': 'allow-with-description',
+            'ts-nocheck': 'allow-with-description'
+          })
+        ],
         ['@typescript-eslint/ban-types', 1],
         ['@typescript-eslint/explicit-module-boundary-types', 0],
         ['@typescript-eslint/no-empty-interface', 0],
         ['@typescript-eslint/no-explicit-any', 2],
-        ['@typescript-eslint/no-unused-vars', 2, `{ argsIgnorePattern: '^_' }`]
+        ['@typescript-eslint/no-unused-vars', 2, JSON.stringify({ argsIgnorePattern: '^_' })]
       ]) || [])
     ] as Array<[string, number, string?]>
   )
