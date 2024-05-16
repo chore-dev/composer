@@ -17,8 +17,10 @@ const config = tsESLint.config(
       'out/',
       // Cache files
       '.eslintcache',
+      '.rollup.cache/',
       // Config files
       'eslint.config.js',
+      'rollup.config.js',
       '.prettier.config.js'
     ]
   },
@@ -35,8 +37,16 @@ const config = tsESLint.config(
     },
     rules: {
       'import/no-duplicates': 'off',
-      'no-console': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
+      'no-console': ['error', { allow: ['error', 'warn'] }],
+      '@typescript-eslint/ban-ts-comment': [
+        'error',
+        {
+          'ts-check': 'allow-with-description',
+          'ts-expect-error': 'allow-with-description',
+          'ts-ignore': 'allow-with-description',
+          'ts-nocheck': 'allow-with-description'
+        }
+      ],
       '@typescript-eslint/ban-types': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-empty-interface': 'off',
