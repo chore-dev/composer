@@ -12,7 +12,7 @@
     "extract-templates": "find src -type d -name \"templates\" -exec sh -c 'cp -r \"{}/\" dist/templates/' \\;",
     "serve": "node ./dist/index.js",
     "// ESLint": "---------- ---------- ---------- ---------- ----------",
-    "eslint": "eslint . --cache --color --config eslint.config.js",
+    "eslint": "yarn prettier:fix; eslint . --cache --color --config eslint.config.js",
     "eslint:fix": "yarn eslint --fix --quiet",
     "// Prettier": "---------- ---------- ---------- ---------- ----------",
     "prettier": "yarn prettier:base -c",

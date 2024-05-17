@@ -3,6 +3,7 @@ import { condition, exportByPackageType, indent, lines } from '../../../../utili
 
 const imports = () => {
   const { framework, prettier } = getAnswers();
+  const { createConfig: prettierConfig } = prettier || {};
 
   const isReact = framework === 'react';
   const isVue = framework === 'vue';
@@ -15,7 +16,8 @@ const imports = () => {
         condition(isReact, ['reactRecommended', 'eslint-plugin-react/configs/recommended']),
         condition(isVue, ['vueESLint', 'eslint-plugin-vue']),
         ['globals', 'globals'],
-        ['tsESLint', 'typescript-eslint']
+        ['tsESLint', 'typescript-eslint'],
+        condition(prettierConfig, ['prettierConfig', './.prettier.config.js'])
       ].filter(Boolean) as Array<[string, string]>
     ).map(([name, packageName]) => {
       return `import ${name} from '${packageName}';`;
@@ -51,6 +53,7 @@ const recommends = () => {
 
 const ignores = () => {
   const { eslint, prettier } = getAnswers();
+  const { createConfig: prettierConfig } = prettier || {};
 
   if (!eslint || !eslint.addIgnores) return undefined;
 
@@ -71,7 +74,7 @@ const ignores = () => {
         // FIXME: Replace false with the actual condition
         condition(false, `'commitlint.config.js',`),
         `'eslint.config.js',`,
-        condition(prettier, `'.prettier.config.js'`)
+        condition(prettierConfig, `'.prettier.config.js'`)
       ]),
       ']'
     ]),
@@ -80,8 +83,9 @@ const ignores = () => {
 };
 
 const main = () => {
-  const { env, framework, typescript, withSyntaxExtension } = getAnswers();
+  const { env, framework, prettier, typescript, withSyntaxExtension } = getAnswers();
   const { isBrowser, isNode } = env;
+  const { createConfig: prettierConfig } = prettier || {};
 
   const files = [
     'js',
@@ -108,6 +112,9 @@ const main = () => {
     [
       ['import/no-duplicates', 0],
       ['no-console', 2, JSON.stringify({ allow: ['error', 'warn'] })],
+      ...(condition(prettier, [
+        ['prettier/prettier', 2, prettierConfig ? 'prettierConfig' : undefined]
+      ]) || []),
       ...(condition(framework === 'react', [
         ['react/jsx-uses-react', 0],
         condition(typescript, ['react/prop-types', 2]),

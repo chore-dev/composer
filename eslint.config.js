@@ -2,11 +2,9 @@ import esLint from '@eslint/js';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
 import tsESLint from 'typescript-eslint';
+import prettierConfig from './.prettier.config.js';
 
 const config = tsESLint.config(
-  esLint.configs.recommended,
-  ...tsESLint.configs.recommended,
-  prettierRecommended,
   {
     ignores: [
       // Build output directory
@@ -24,6 +22,9 @@ const config = tsESLint.config(
       '.prettier.config.js'
     ]
   },
+  esLint.configs.recommended,
+  ...tsESLint.configs.recommended,
+  prettierRecommended,
   {
     files: ['**/*.{js,ts}'],
     languageOptions: {
@@ -38,6 +39,7 @@ const config = tsESLint.config(
     rules: {
       'import/no-duplicates': 'off',
       'no-console': ['error', { allow: ['error', 'warn'] }],
+      'prettier/prettier': ['error', prettierConfig],
       '@typescript-eslint/ban-ts-comment': [
         'error',
         {
