@@ -45,6 +45,7 @@ export const PACKAGE_MANAGERS = {
     label: 'npm',
     scripts: {
       install: (isDev = false) => `npm i${isDev ? ' --save-dev' : ' --save'}`,
+      commitLint: 'npx --no --',
       run: 'npm run'
     }
   },
@@ -53,6 +54,7 @@ export const PACKAGE_MANAGERS = {
     label: 'PNPm',
     scripts: {
       install: (isDev = false) => `pnpm i${isDev ? ' -D' : ''}`,
+      commitLint: 'pnpm dlx',
       run: 'pnpm run'
     }
   },
@@ -61,6 +63,7 @@ export const PACKAGE_MANAGERS = {
     label: 'Yarn',
     scripts: {
       install: (isDev = false) => `yarn add${isDev ? ' -D' : ''}`,
+      commitLint: 'yarn',
       run: 'yarn'
     }
   }

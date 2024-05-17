@@ -1,6 +1,7 @@
 import { Prettify } from '@chore-dev/utility-types';
 
 import { ONBOARDING_ANSWERS } from '../onboarding';
+import { COMMIT_LINT_ANSWERS } from '../packages/commitlint';
 import { EDITOR_CONFIG_ANSWERS } from '../packages/EditorConfig';
 import { ESLINT_ANSWERS } from '../packages/ESLint';
 import { HUSKY_ANSWERS } from '../packages/Husky';
@@ -16,7 +17,8 @@ export const updateAnswers = (answers: Partial<Answers>): void => {
 };
 
 export type Answers = Prettify<
-  EDITOR_CONFIG_ANSWERS &
+  COMMIT_LINT_ANSWERS &
+    EDITOR_CONFIG_ANSWERS &
     ESLINT_ANSWERS &
     HUSKY_ANSWERS &
     ONBOARDING_ANSWERS &
