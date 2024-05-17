@@ -3,6 +3,7 @@ import { DateTime } from 'luxon';
 import { onBoardingQuestions } from './onboarding';
 import { editorConfigQuestions, editorConfigTasks } from './packages/EditorConfig';
 import { esLintQuestions, esLintTasks } from './packages/ESLint';
+import { huskyQuestions, huskyTasks } from './packages/Husky';
 import { prettierQuestions, prettierTasks } from './packages/Prettier';
 import { typeScriptQuestions, typeScriptTasks } from './packages/TypeScript';
 import { getAnswers, updateAnswers } from './store/answers.store';
@@ -91,6 +92,7 @@ const isValidEnvironment = () => {
       await typeScriptQuestions();
       await esLintQuestions();
       await prettierQuestions();
+      await huskyQuestions();
     }
 
     if (isDryRun()) return APP_FOOTER();
@@ -106,6 +108,7 @@ const isValidEnvironment = () => {
     await typeScriptTasks();
     await esLintTasks();
     await prettierTasks();
+    await huskyTasks();
 
     APP_FOOTER();
   } catch (e) {

@@ -23,7 +23,7 @@ export const addScriptToPackageJson = (scripts: Array<[string, string]>) => {
   writeBeforeWrite(PWD('./package.json'), json);
 };
 
-const execInPwd = (command: string) => execSync(`cd ${PWD()} && ${command}`);
+export const execInPwd = (command: string) => execSync(`cd ${PWD()} && ${command}`);
 
 export const managerInstall = (packages: string | Array<string | false>, isDev = false) => {
   const _packages = Array.isArray(packages) ? packages.filter(Boolean).join(' ') : packages;

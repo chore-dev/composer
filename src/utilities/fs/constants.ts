@@ -33,4 +33,4 @@ export const templateDirectory = (file: Templates) => {
 
 type RootFn = () => string;
 
-type Templates = '.editorconfig' | '.prettierignore';
+type Templates = '.editorconfig' | '.prettierignore' | 'common.sh';
