@@ -1,5 +1,4 @@
-# Backup files
-*.bak
+.composer.bak
 
 # Build output directory
 /coverage

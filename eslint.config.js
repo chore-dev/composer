@@ -7,6 +7,8 @@ import prettierConfig from './.prettier.config.js';
 const config = tsESLint.config(
   {
     ignores: [
+      // Backup files
+      '.composer.bak/',
       // Build output directory
       'coverage/',
       'build/',
@@ -17,9 +19,9 @@ const config = tsESLint.config(
       '.eslintcache',
       '.rollup.cache/',
       // Config files
+      '.prettier.config.js',
       'eslint.config.js',
-      'rollup.config.js',
-      '.prettier.config.js'
+      'rollup.config.js'
     ]
   },
   esLint.configs.recommended,
