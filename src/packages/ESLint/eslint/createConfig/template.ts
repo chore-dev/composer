@@ -164,7 +164,7 @@ const createESLintConfig = () => {
     '',
     notes(),
     'const config = tsESLint.config(',
-    indent([recommends(), ignores(), main()]),
+    indent([ignores(), recommends(), main()]),
     ');',
     '',
     exportByPackageType('config')
