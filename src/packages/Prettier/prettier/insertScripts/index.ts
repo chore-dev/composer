@@ -25,7 +25,10 @@ const insertScripts = () => {
   addScriptToPackageJson([
     ['// Prettier', '---------- ---------- ---------- ---------- ----------'],
     ['prettier', managerRun('prettier:base -c')],
-    ['prettier:base', `prettier './**/*.{${extensions}}' --cache${config}${ignore}`],
+    [
+      'prettier:base',
+      `prettier './**/*.{${extensions}}' --cache${config}${ignore} --ignore-unknown`
+    ],
     ['prettier:fix', managerRun('prettier:base -w')]
   ]);
 };

@@ -52,8 +52,9 @@ const recommends = () => {
 };
 
 const ignores = () => {
-  const { commitLint, eslint, prettier } = getAnswers();
+  const { commitLint, eslint, lintStaged, prettier } = getAnswers();
   const { createConfig: commitLintConfig } = commitLint || {};
+  const { createConfig: lintStagedConfig } = lintStaged || {};
   const { createConfig: prettierConfig } = prettier || {};
 
   if (!eslint || !eslint.addIgnores) return undefined;
@@ -74,6 +75,7 @@ const ignores = () => {
         '// Config files',
         condition(commitLintConfig, `'commitlint.config.js',`),
         `'eslint.config.js',`,
+        condition(lintStagedConfig, `'lint-staged.config.js',`),
         condition(prettierConfig, `'.prettier.config.js'`)
       ]),
       ']'
