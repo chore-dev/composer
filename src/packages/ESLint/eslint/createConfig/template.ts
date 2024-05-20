@@ -52,7 +52,8 @@ const recommends = () => {
 };
 
 const ignores = () => {
-  const { eslint, prettier } = getAnswers();
+  const { commitLint, eslint, prettier } = getAnswers();
+  const { createConfig: commitLintConfig } = commitLint || {};
   const { createConfig: prettierConfig } = prettier || {};
 
   if (!eslint || !eslint.addIgnores) return undefined;
@@ -71,8 +72,7 @@ const ignores = () => {
         '// Cache files',
         `'.eslintcache',`,
         '// Config files',
-        // FIXME: Replace false with the actual condition
-        condition(false, `'commitlint.config.js',`),
+        condition(commitLintConfig, `'commitlint.config.js',`),
         `'eslint.config.js',`,
         condition(prettierConfig, `'.prettier.config.js'`)
       ]),
