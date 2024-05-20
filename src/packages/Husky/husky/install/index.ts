@@ -1,7 +1,7 @@
 import { managerInstall } from '../../../../utilities/cli';
 
 const install = () => {
-  managerInstall([`husky`], true);
+  managerInstall('husky', true);
 };
 
 export default install;
