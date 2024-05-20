@@ -10,12 +10,16 @@ const insertScripts = () => {
   const { insertScripts } = prettier || {};
 
   const config = createConfig ? ' --config eslint.config.js' : '';
-  const runPrettier = insertScripts ? managerRun('prettier:fix') : '';
+  const runPrettier = insertScripts ? `${managerRun('prettier:fix')}; ` : '';
+
+  const fixOptions = ' --fix --quiet';
 
   addScriptToPackageJson([
     ['// ESLint', '---------- ---------- ---------- ---------- ----------'],
-    ['eslint', `${runPrettier}; eslint . --cache --color${config}`],
-    ['eslint:fix', managerRun('eslint --fix --quiet')]
+    ['eslint', `${runPrettier}${managerRun(`eslint:no-glob .`)}`],
+    ['eslint:no-glob', `eslint --cache --color${config}`],
+    ['eslint:fix', managerRun(`eslint${fixOptions}`)],
+    ['eslint:fix:no-glob', managerRun(`eslint:no-glob${fixOptions}`)]
   ]);
 };
 

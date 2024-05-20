@@ -12,15 +12,16 @@
     "serve": "node ./dist/index.js",
     "prepare": "husky",
     "// ESLint": "---------- ---------- ---------- ---------- ----------",
-    "eslint": "yarn prettier:fix; eslint . --cache --color --config eslint.config.js",
+    "eslint": "yarn prettier:fix; yarn eslint:no-glob .",
+    "eslint:no-glob": "eslint --cache --color --config eslint.config.js",
     "eslint:fix": "yarn eslint --fix --quiet",
+    "eslint:fix:no-glob": "yarn eslint:no-glob --fix --quiet",
     "// Prettier": "---------- ---------- ---------- ---------- ----------",
     "prettier": "yarn prettier:base -c",
-    "prettier:base": "prettier './**/*.{js?(x),ts?(x),json}' --cache --config .prettier.config.js --ignore-path .prettierignore --ignore-unknown",
+    "prettier:base": "yarn prettier:base:no-glob './**/*.{js?(x),ts?(x),json}'",
+    "prettier:base:no-glob": "prettier --cache --config .prettier.config.js --ignore-path .prettierignore --ignore-unknown",
     "prettier:fix": "yarn prettier:base -w",
-    "// Format": "---------- ---------- ---------- ---------- ----------",
-    "format": "yarn eslint; yarn prettier",
-    "format:fix": "yarn eslint:fix; yarn prettier:fix"
+    "prettier:fix:no-glob": "yarn prettier:base:no-glob -w"
   },
   "dependencies": {
     "@commitlint/cli": "^19.3.0",

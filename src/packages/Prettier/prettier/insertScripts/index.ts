@@ -22,14 +22,15 @@ const insertScripts = () => {
     .filter(Boolean)
     .join(',');
 
+  const fixOptions = ' -w';
+
   addScriptToPackageJson([
     ['// Prettier', '---------- ---------- ---------- ---------- ----------'],
     ['prettier', managerRun('prettier:base -c')],
-    [
-      'prettier:base',
-      `prettier './**/*.{${extensions}}' --cache${config}${ignore} --ignore-unknown`
-    ],
-    ['prettier:fix', managerRun('prettier:base -w')]
+    ['prettier:base', managerRun(`prettier:base:no-glob './**/*.{${extensions}}'`)],
+    ['prettier:base:no-glob', `prettier --cache${config}${ignore} --ignore-unknown`],
+    ['prettier:fix', managerRun(`prettier:base${fixOptions}`)],
+    ['prettier:fix:no-glob', managerRun(`prettier:base:no-glob${fixOptions}`)]
   ]);
 };
 

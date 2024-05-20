@@ -13,8 +13,8 @@ const createLintStagedConfig = () => {
 
   const config: Config = {
     '*': [
-      prettierScripts && managerRun('prettier:fix'),
-      eslintScripts && managerRun('eslint:fix')
+      prettierScripts && managerRun('prettier:fix:no-glob'),
+      eslintScripts && managerRun('eslint:fix:no-glob')
     ].filter(Boolean) as Array<string>
   };
 
