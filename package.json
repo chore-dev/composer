@@ -16,6 +16,7 @@
     "TypeScript"
   ],
   "type": "module",
+  "bin": "./bin/compose.js",
   "exports": "./dist/index.js",
   "main": "./dist/index.js",
   "files": [
