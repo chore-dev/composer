@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.2](https://github.com/chore-dev/composer/compare/v1.0.1...v1.0.2) (2024-05-21)
+
+### Bug Fixes
+
+- fixed fn name typo backupBeforeWrite instead of writeBeforeWrite
+  ([bbdb8fd](https://github.com/chore-dev/composer/commit/bbdb8fd05e1677793d47893f3fa839dcc9338dc6))
+- **Husky:** fixed husky directory unable to init issue
+  ([2a338fd](https://github.com/chore-dev/composer/commit/2a338fd193f56a30db5f12140217a44a8406f574))
+
 ## [1.0.1](https://github.com/chore-dev/composer/compare/v1.0.0...v1.0.1) (2024-05-21)
 
 ### Bug Fixes
