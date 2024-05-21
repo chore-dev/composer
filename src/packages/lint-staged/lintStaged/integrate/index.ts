@@ -1,5 +1,5 @@
 import { getAnswers } from '../../../../store/answers.store';
-import { writeBeforeWrite } from '../../../../utilities/fs';
+import { backupBeforeWrite } from '../../../../utilities/fs';
 import { PWD } from '../../../../utilities/fs/constants';
 
 import createPreCommitHook from './template';
@@ -9,7 +9,7 @@ const integrate = () => {
 
   if (!husky) return;
 
-  writeBeforeWrite(PWD('./.husky/pre-commit'), createPreCommitHook());
+  backupBeforeWrite(PWD('./.husky/pre-commit'), createPreCommitHook());
 };
 
 export default integrate;

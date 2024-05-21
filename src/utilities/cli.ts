@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 import { getAnswers } from '../store/answers.store';
 
 import { PACKAGE_MANAGERS } from './constants';
-import { writeBeforeWrite } from './fs';
+import { backupBeforeWrite } from './fs';
 import { PWD } from './fs/constants';
 import { task } from './logger';
 
@@ -20,7 +20,7 @@ export const addScriptToPackageJson = (scripts: Array<[string, string]>) => {
 
   json.scripts = update;
 
-  writeBeforeWrite(PWD('./package.json'), json);
+  backupBeforeWrite(PWD('./package.json'), json);
 };
 
 export const execInPwd = (command: string) => execSync(`cd ${PWD()} && ${command}`);

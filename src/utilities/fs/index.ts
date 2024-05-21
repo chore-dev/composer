@@ -29,11 +29,7 @@ export const backupBeforeCopy = (from: string, to: string) => {
   task([false, true], `Created!`);
 };
 
-export const readJson = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
-
-export const readPackageJson = () => readJson(PWD('./package.json'));
-
-export const writeBeforeWrite = (to: string, content: string | Record<string, unknown>) => {
+export const backupBeforeWrite = (to: string, content: string | Record<string, unknown>) => {
   backup(to);
 
   task([false], `Creating ${to}...`);
@@ -42,3 +38,7 @@ export const writeBeforeWrite = (to: string, content: string | Record<string, un
 };
 
 export const isPathExist = (path: string) => existsSync(path);
+
+export const readJson = (path: string) => JSON.parse(readFileSync(path, 'utf8'));
+
+export const readPackageJson = () => readJson(PWD('./package.json'));
