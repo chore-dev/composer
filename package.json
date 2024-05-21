@@ -1,11 +1,28 @@
 {
-  "name": "@chore/composer",
+  "name": "@chore-dev/composer",
   "version": "0.0.1",
   "description": "Single command project setup! This package automates essential tools for code style, version control, releases, and Docker.",
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "commitlint",
+    "Docker",
+    "EditorConfig",
+    "ESLint",
+    "Git",
+    "Husky",
+    "lint-staged",
+    "Prettier",
+    "release-it",
+    "TypeScript"
+  ],
   "type": "module",
   "exports": "./dist/index.js",
   "main": "./dist/index.js",
+  "files": [
+    "bin",
+    "dist",
+    "dist/templates/.gitignore"
+  ],
   "scripts": {
     "build": "rollup ./src/index.ts --config rollup.config.js && yarn extract-templates",
     "extract-templates": "find src -type d -name \"templates\" -exec sh -c 'cp -r \"{}/\" dist/templates/' \\;",
