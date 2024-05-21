@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/chore-dev/composer/compare/v1.0.0...v1.0.1) (2024-05-21)
+
+### Bug Fixes
+
+- **Git:** fixed .gitignore being ignored when publish issue
+  ([733b2f6](https://github.com/chore-dev/composer/commit/733b2f6f6af0bf1f85a9593e066f2df3c7d627bf))
+
 ## 1.0.0 (2024-05-21)
 
 ### Features
