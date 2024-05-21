@@ -4,7 +4,7 @@ import { createCheckbox, createCheckboxChoice, massageChoices } from '../../../u
 export const CHOICES = [
   ['Install dependencies', 'install', 'Install', true],
   ['Insert scripts', 'insertScripts', 'Scripts', true],
-  ['Create .release-it.js', 'createConfig', 'Config', true]
+  ['Create .release-it.json', 'createConfig', 'Config', true]
 ] as const satisfies SimplifiedChoices;
 
 export const QUESTION = (key: string) => {

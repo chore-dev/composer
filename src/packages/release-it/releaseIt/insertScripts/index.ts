@@ -8,7 +8,7 @@ const insertScripts = () => {
 
   const { createConfig } = releaseIt;
 
-  const config = createConfig ? ' --config .release-it.js' : '';
+  const config = createConfig ? ' --config .release-it.json' : '';
 
   addScriptToPackageJson([['release', `release-it${config}`]]);
 };

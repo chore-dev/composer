@@ -29,7 +29,7 @@
     "extract-templates": "find src -type d -name \"templates\" -exec sh -c 'cp -r \"{}/\" dist/templates/' \\;",
     "serve": "node ./dist/index.js",
     "prepare": "husky",
-    "release": "release-it --config .release-it.js",
+    "release": "release-it --config .release-it.json",
     "// ESLint": "---------- ---------- ---------- ---------- ----------",
     "eslint": "yarn prettier:fix; yarn eslint:no-glob .",
     "eslint:no-glob": "eslint --cache --color --config eslint.config.js",

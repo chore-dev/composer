@@ -1,12 +1,8 @@
-import { readPackageJson } from '../../../../utilities/fs';
-
-// Read https://github.com/release-it/release-it/blob/main/docs/configuration.md for more information about .release-it.js
+// Read https://github.com/release-it/release-it/blob/main/docs/configuration.md for more information about .release-it.json
 const createReleaseItConfig = () => {
-  const isModule = readPackageJson().type === 'module';
-
   const versionFormat = 'v${version}';
 
-  const config = {
+  return {
     hooks: {},
     git: {
       commit: true,
@@ -73,12 +69,6 @@ const createReleaseItConfig = () => {
       }
     }
   };
-
-  return [
-    `const config = ${JSON.stringify(config, null, 2)};`,
-    '',
-    isModule ? 'export default config;' : 'module.exports = config;'
-  ].join('\n');
 };
 
 export default createReleaseItConfig;
