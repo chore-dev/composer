@@ -2,8 +2,10 @@ import { DateTime } from 'luxon';
 
 import { onBoardingQuestions } from './onboarding';
 import { commitLintQuestions, commitLintTasks } from './packages/commitlint';
+import { dockerQuestions, dockerTasks } from './packages/Docker';
 import { editorConfigQuestions, editorConfigTasks } from './packages/EditorConfig';
 import { esLintQuestions, esLintTasks } from './packages/ESLint';
+import { gitQuestions, gitTasks } from './packages/Git';
 import { huskyQuestions, huskyTasks } from './packages/Husky';
 import { lintStagedQuestions, lintStagedTasks } from './packages/lint-staged';
 import { prettierQuestions, prettierTasks } from './packages/Prettier';
@@ -97,6 +99,8 @@ const isValidEnvironment = () => {
       await huskyQuestions();
       await commitLintQuestions();
       await lintStagedQuestions();
+      await dockerQuestions();
+      await gitQuestions();
     }
 
     if (isDryRun()) return APP_FOOTER();
@@ -115,6 +119,8 @@ const isValidEnvironment = () => {
     await huskyTasks();
     await commitLintTasks();
     await lintStagedTasks();
+    await dockerTasks();
+    await gitTasks();
 
     APP_FOOTER();
   } catch (e) {
