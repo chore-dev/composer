@@ -7,7 +7,7 @@
 .Spotlight-V100
 .Trashes
 Icon
-!src/**/*/Icon
+!src/**/Icon
 
 ## Windows
 *.cab
