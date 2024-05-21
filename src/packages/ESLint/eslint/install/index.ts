@@ -18,7 +18,7 @@ const install = () => {
     //       So we use "typescript-eslint" to provide autocomplete and documentation for all config properties to prevent invalid configurations.
     //       In the simplest terms, this improves the developer experience.
     `eslint${FIXED_VERSION} globals typescript-eslint @eslint/js${FIXED_VERSION} @types/eslint__js${FIXED_VERSION}`,
-    framework === 'react' && 'eslint-plugin-react',
+    framework === 'react' && 'eslint-plugin-react @types/eslint-plugin-react',
     framework === 'vue' && 'eslint-plugin-vue',
     prettier && 'eslint-config-prettier eslint-plugin-prettier'
   ];

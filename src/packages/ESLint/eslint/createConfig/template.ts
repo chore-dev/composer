@@ -1,10 +1,12 @@
 import { getAnswers } from '../../../../store/answers.store';
 import { condition, exportByPackageType, indent, lines } from '../../../../utilities/document';
+import { readPackageJson } from '../../../../utilities/fs';
 
 const imports = () => {
   const { framework, prettier } = getAnswers();
   const { createConfig: prettierConfig } = prettier || {};
 
+  const isModule = readPackageJson().type === 'module';
   const isReact = framework === 'react';
   const isVue = framework === 'vue';
 
@@ -20,7 +22,11 @@ const imports = () => {
         condition(prettierConfig, ['prettierConfig', './.prettier.config.js'])
       ].filter(Boolean) as Array<[string, string]>
     ).map(([name, packageName]) => {
-      return `import ${name} from '${packageName}';`;
+      if (isModule) {
+        return `import ${name} from '${packageName}';`;
+      } else {
+        return `const ${name} = require('${packageName}');`;
+      }
     })
   );
 };
