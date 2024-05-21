@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/chore-dev/composer/compare/v1.0.3...v1.0.4) (2024-05-21)
+
+### Bug Fixes
+
+- **ESLint:** fixed invalid package
+  ([4571a51](https://github.com/chore-dev/composer/commit/4571a51dd667e89ffed287d118f62e41f46a4500))
+
 ## [1.0.3](https://github.com/chore-dev/composer/compare/v1.0.2...v1.0.3) (2024-05-21)
 
 ### Bug Fixes
