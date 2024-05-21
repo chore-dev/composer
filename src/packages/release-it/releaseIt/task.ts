@@ -8,8 +8,8 @@ export const TASK = () => {
   const { releaseIt } = getAnswers();
 
   if (releaseIt) {
-    if (releaseIt.createConfig) createConfig();
-    if (releaseIt.insertScripts) insertScripts();
     if (releaseIt.install) install();
+    if (releaseIt.insertScripts) insertScripts();
+    if (releaseIt.createConfig) createConfig();
   }
 };
