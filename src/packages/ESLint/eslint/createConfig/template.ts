@@ -52,7 +52,6 @@ const recommends = () => {
     'esLint.configs.recommended,',
     condition(typescript, '...tsESLint.configs.recommended,'),
     condition(prettier, 'prettierRecommended,'),
-    condition(framework === 'react', 'reactRecommended,'),
     condition(framework === 'vue', `...vueESLint.configs['flat/recommended'],`)
   ]);
 };
@@ -97,6 +96,8 @@ const main = () => {
   const { isBrowser, isNode } = env;
   const { createConfig: prettierConfig } = prettier || {};
 
+  const isReact = framework === 'react';
+
   const files = [
     'js',
     condition(withSyntaxExtension, 'jsx'),
@@ -125,9 +126,9 @@ const main = () => {
       ...(condition(prettier, [
         ['prettier/prettier', 2, prettierConfig ? 'prettierConfig' : undefined]
       ]) || []),
-      ...(condition(framework === 'react', [
+      ...(condition(isReact, [
         ['react/jsx-uses-react', 0],
-        condition(typescript, ['react/prop-types', 2]),
+        condition(!typescript, ['react/prop-types', 2]),
         ['react/react-in-jsx-scope', 0]
       ]) || []),
       ...(condition(typescript, [
@@ -163,10 +164,17 @@ const main = () => {
     '{',
     indent([
       `files: ['**/*.{${files}}'],`,
+      condition(isReact, '...reactRecommended,'),
       'languageOptions: {',
-      indent(['globals: {', indent(globals), '}']),
+      indent([
+        condition(isReact, '...reactRecommended.languageOptions,'),
+        'globals: {',
+        indent(globals),
+        '}'
+      ]),
       '},',
       'rules: {',
+      condition(isReact, '...reactRecommended.rules,'),
       indent(rules),
       '},'
     ]),
