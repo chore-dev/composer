@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/chore-dev/composer/compare/v1.0.4...v1.0.5) (2024-05-21)
+
+### Restructured
+
+- **ESLint:** updated way of importing react recommended
+  ([f5588f2](https://github.com/chore-dev/composer/commit/f5588f2083792c12d4a90375c18a9eceb2acabba))
+
 ## [1.0.4](https://github.com/chore-dev/composer/compare/v1.0.3...v1.0.4) (2024-05-21)
 
 ### Bug Fixes
