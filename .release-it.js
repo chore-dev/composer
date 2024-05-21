@@ -1,5 +1,7 @@
 const config = {
-  hooks: {},
+  hooks: {
+    'after:bump': 'yarn build'
+  },
   git: {
     commit: true,
     commitMessage: 'chore: release v${version}',
