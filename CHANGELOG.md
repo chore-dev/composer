@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/chore-dev/composer/compare/v1.0.2...v1.0.3) (2024-05-21)
+
+### Bug Fixes
+
+- **ESLint:** fixed incorrect handling of non module project
+  ([3d46941](https://github.com/chore-dev/composer/commit/3d4694104c2899f1fda395a238027ca8204adc4b))
+
 ## [1.0.2](https://github.com/chore-dev/composer/compare/v1.0.1...v1.0.2) (2024-05-21)
 
 ### Bug Fixes
