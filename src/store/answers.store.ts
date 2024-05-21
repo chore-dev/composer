@@ -9,6 +9,7 @@ import { GIT_ANSWERS } from '../packages/Git';
 import { HUSKY_ANSWERS } from '../packages/Husky';
 import { LINT_STAGED_ANSWERS } from '../packages/lint-staged';
 import { PRETTIER_ANSWERS } from '../packages/Prettier';
+import { RELEASE_IT_ANSWERS } from '../packages/release-it';
 import { TYPESCRIPT_ANSWERS } from '../packages/TypeScript';
 
 let ANSWERS = {} as Answers;
@@ -29,5 +30,6 @@ export type Answers = Prettify<
     LINT_STAGED_ANSWERS &
     ONBOARDING_ANSWERS &
     PRETTIER_ANSWERS &
+    RELEASE_IT_ANSWERS &
     TYPESCRIPT_ANSWERS
 >;

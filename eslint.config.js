@@ -19,11 +19,12 @@ const config = tsESLint.config(
       '.eslintcache',
       '.rollup.cache/',
       // Config files
+      '.prettier.config.js',
+      '.release-it.js',
       'commitlint.config.js',
       'eslint.config.js',
       'rollup.config.js',
-      'lint-staged.config.js',
-      '.prettier.config.js'
+      'lint-staged.config.js'
     ]
   },
   esLint.configs.recommended,

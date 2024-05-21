@@ -1,3 +1,7 @@
+# Node.js / npm / Yarn
+node_modules/
+
+# Backup files
 .composer.bak
 
 # Build output directory
@@ -7,9 +11,6 @@
 /dist
 /out
 
-# Cache
+# Build output files
 .eslintcache
 .rollup.cache
-
-# Node.js / npm / Yarn
-node_modules/

@@ -11,6 +11,7 @@
     "extract-templates": "find src -type d -name \"templates\" -exec sh -c 'cp -r \"{}/\" dist/templates/' \\;",
     "serve": "node ./dist/index.js",
     "prepare": "husky",
+    "release": "release-it --config .release-it.js",
     "// ESLint": "---------- ---------- ---------- ---------- ----------",
     "eslint": "yarn prettier:fix; yarn eslint:no-glob .",
     "eslint:no-glob": "eslint --cache --color --config eslint.config.js",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "@chore-dev/utility-types": "^1.0.0",
     "@eslint/js": "8",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/command-line-args": "^5.2.3",
@@ -50,6 +52,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
+    "release-it": "^17.3.0",
     "rollup": "^4.17.1",
     "rollup-plugin-uglify": "^6.0.4",
     "typescript": "^5.4.5",

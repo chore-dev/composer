@@ -9,6 +9,7 @@ import { gitQuestions, gitTasks } from './packages/Git';
 import { huskyQuestions, huskyTasks } from './packages/Husky';
 import { lintStagedQuestions, lintStagedTasks } from './packages/lint-staged';
 import { prettierQuestions, prettierTasks } from './packages/Prettier';
+import { releaseItQuestions, releaseItTasks } from './packages/release-it';
 import { typeScriptQuestions, typeScriptTasks } from './packages/TypeScript';
 import { getAnswers, updateAnswers } from './store/answers.store';
 import { updateApplication } from './store/application.store';
@@ -101,6 +102,7 @@ const isValidEnvironment = () => {
       await lintStagedQuestions();
       await dockerQuestions();
       await gitQuestions();
+      await releaseItQuestions();
     }
 
     if (isDryRun()) return APP_FOOTER();
@@ -121,6 +123,7 @@ const isValidEnvironment = () => {
     await lintStagedTasks();
     await dockerTasks();
     await gitTasks();
+    await releaseItTasks();
 
     APP_FOOTER();
   } catch (e) {

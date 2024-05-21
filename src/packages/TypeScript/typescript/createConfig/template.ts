@@ -6,6 +6,7 @@ const createTsConfigJson = () => {
 
   return {
     exclude: [
+      '.composer.bak',
       'bower_components',
       'jspm_packages',
       'node_modules',

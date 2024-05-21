@@ -52,10 +52,11 @@ const recommends = () => {
 };
 
 const ignores = () => {
-  const { commitLint, eslint, lintStaged, prettier } = getAnswers();
+  const { commitLint, eslint, lintStaged, prettier, releaseIt } = getAnswers();
   const { createConfig: commitLintConfig } = commitLint || {};
   const { createConfig: lintStagedConfig } = lintStaged || {};
   const { createConfig: prettierConfig } = prettier || {};
+  const { createConfig: releaseItConfig } = releaseIt || {};
 
   if (!eslint || !eslint.addIgnores) return undefined;
 
@@ -64,6 +65,8 @@ const ignores = () => {
     indent([
       'ignores: [',
       indent([
+        '// Backup files',
+        `'.composer.bak/',`,
         '// Build output directory',
         `'coverage/',`,
         `'build/',`,
@@ -73,10 +76,11 @@ const ignores = () => {
         '// Cache files',
         `'.eslintcache',`,
         '// Config files',
+        condition(prettierConfig, `'.prettier.config.js',`),
+        condition(releaseItConfig, `'.release-it.js',`),
         condition(commitLintConfig, `'commitlint.config.js',`),
         `'eslint.config.js',`,
-        condition(lintStagedConfig, `'lint-staged.config.js',`),
-        condition(prettierConfig, `'.prettier.config.js'`)
+        condition(lintStagedConfig, `'lint-staged.config.js'`)
       ]),
       ']'
     ]),
