@@ -4,12 +4,20 @@ import { readFileSync } from 'fs';
 import { getAnswers } from '../store/answers.store';
 
 import { PACKAGE_MANAGERS } from './constants';
-import { backupBeforeWrite } from './fs';
+import { backupBeforeWrite, isPathExist } from './fs';
 import { PWD } from './fs/constants';
-import { task } from './logger';
+import { error, task } from './logger';
 
 export const addScriptToPackageJson = (scripts: Array<[string, string]>) => {
-  const json = JSON.parse(readFileSync(`${PWD()}/package.json`, 'utf8'));
+  if (!isPathExist(PWD('./package.json'))) {
+    error(
+      [true, true],
+      `Failed to add script to package.json. package.json not found, run \`${managerRun('init')}\` first.`
+    );
+    return;
+  }
+
+  const json = JSON.parse(readFileSync(PWD('./package.json'), 'utf8'));
 
   const update: Record<string, string> = { ...json.scripts };
 
