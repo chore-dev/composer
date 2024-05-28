@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/chore-dev/composer/compare/v1.0.5...v1.0.6) (2024-05-28)
+
+### Bug Fixes
+
+- fixed composer crash if user didn't init git when preparing husky
+  ([16eaac1](https://github.com/chore-dev/composer/commit/16eaac1873d829c62e558e7736a7696e1fda7fc7))
+
 ## [1.0.5](https://github.com/chore-dev/composer/compare/v1.0.4...v1.0.5) (2024-05-21)
 
 ### Restructured
