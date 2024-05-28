@@ -1,6 +1,6 @@
 {
   "name": "@chore-dev/composer",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Single command project setup! This package automates essential tools for code style, version control, releases, and Docker.",
   "keywords": [
     "cli",

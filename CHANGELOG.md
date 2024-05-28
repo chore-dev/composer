@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/chore-dev/composer/compare/v1.0.7...v1.0.8) (2024-05-28)
+
+### Bug Fixes
+
+- added checking before adding script to package.json to prevent crash
+  ([caf40e3](https://github.com/chore-dev/composer/commit/caf40e37de2c46ee8810c96e8cf4ace79b712e80))
+
 ## [1.0.7](https://github.com/chore-dev/composer/compare/v1.0.6...v1.0.7) (2024-05-28)
 
 ### Bug Fixes
