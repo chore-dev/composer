@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/chore-dev/composer/compare/v1.0.8...v1.0.9) (2024-05-30)
+
+### Bug Fixes
+
+- fixed prettier conflict with vue rules issue
+  ([1055682](https://github.com/chore-dev/composer/commit/1055682b431ed888dddccf868df7a862cb63df93))
+
 ## [1.0.8](https://github.com/chore-dev/composer/compare/v1.0.7...v1.0.8) (2024-05-28)
 
 ### Bug Fixes
