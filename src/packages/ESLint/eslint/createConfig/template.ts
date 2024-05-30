@@ -134,7 +134,10 @@ const main = () => {
         condition(!typescript, ['react/prop-types', 2]),
         ['react/react-in-jsx-scope', 0]
       ]) || []),
-      ...(condition(isVue, [['vue/html-self-closing', 0]]) || []),
+      ...(condition(isVue, [
+        ['vue/html-self-closing', 0],
+        ['vue/singleline-html-element-content-newline', 0]
+      ]) || []),
       ...(condition(typescript, [
         [
           '@typescript-eslint/ban-ts-comment',
