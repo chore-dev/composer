@@ -19,7 +19,7 @@ const install = () => {
     //       In the simplest terms, this improves the developer experience.
     `eslint${FIXED_VERSION} globals typescript-eslint @eslint/js${FIXED_VERSION} @types/eslint__js${FIXED_VERSION}`,
     framework === 'react' && 'eslint-plugin-react',
-    framework === 'vue' && 'eslint-plugin-vue',
+    framework === 'vue' && 'eslint-plugin-vue vue-eslint-parser',
     prettier && 'eslint-config-prettier eslint-plugin-prettier'
   ];
 

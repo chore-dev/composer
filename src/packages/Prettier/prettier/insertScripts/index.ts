@@ -2,7 +2,7 @@ import { getAnswers } from '../../../../store/answers.store';
 import { addScriptToPackageJson, managerRun } from '../../../../utilities/cli';
 
 const insertScripts = () => {
-  const { env, prettier, styleSheet, typescript, withSyntaxExtension } = getAnswers();
+  const { env, framework, prettier, styleSheet, typescript, withSyntaxExtension } = getAnswers();
 
   if (!prettier) return;
 
@@ -16,6 +16,7 @@ const insertScripts = () => {
     env.isBrowser && ['html'],
     withSyntaxExtension ? 'js' : 'js?(x)',
     !!typescript && (withSyntaxExtension ? 'ts' : 'ts?(x)'),
+    framework === 'vue' && 'vue',
     'json'
   ]
     .flat()

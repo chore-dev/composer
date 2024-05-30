@@ -19,6 +19,7 @@ const imports = () => {
         condition(isVue, ['vueESLint', 'eslint-plugin-vue']),
         ['globals', 'globals'],
         ['tsESLint', 'typescript-eslint'],
+        condition(isVue, ['vueParser', 'vue-eslint-parser']),
         condition(prettierConfig, ['prettierConfig', './.prettier.config.js'])
       ].filter(Boolean) as Array<[string, string]>
     ).map(([name, packageName]) => {
@@ -97,12 +98,14 @@ const main = () => {
   const { createConfig: prettierConfig } = prettier || {};
 
   const isReact = framework === 'react';
+  const isVue = framework === 'vue';
 
   const files = [
     'js',
     condition(withSyntaxExtension, 'jsx'),
     condition(typescript, 'ts'),
-    condition(typescript && withSyntaxExtension, 'tsx')
+    condition(typescript && withSyntaxExtension, 'tsx'),
+    condition(isVue, 'vue')
   ]
     .filter(Boolean)
     .join(',');
@@ -131,6 +134,7 @@ const main = () => {
         condition(!typescript, ['react/prop-types', 2]),
         ['react/react-in-jsx-scope', 0]
       ]) || []),
+      ...(condition(isVue, [['vue/html-self-closing', 0]]) || []),
       ...(condition(typescript, [
         [
           '@typescript-eslint/ban-ts-comment',
@@ -161,6 +165,24 @@ const main = () => {
     });
 
   return lines([
+    condition(
+      isVue,
+      lines([
+        '{',
+        indent([
+          `files: ['**/*.vue'],`,
+          'languageOptions: {',
+          indent([
+            'parser: vueParser,',
+            'parserOptions: {',
+            indent(['parser: tsESLint.parser,', `sourceType: 'module'`]),
+            '}'
+          ]),
+          '},'
+        ]),
+        '},'
+      ])
+    ),
     '{',
     indent([
       `files: ['**/*.{${files}}'],`,
