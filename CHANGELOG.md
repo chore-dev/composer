@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.0.11](https://github.com/chore-dev/composer/compare/v1.0.10...v1.0.11) (2024-05-31)
+
 ## [1.0.10](https://github.com/chore-dev/composer/compare/v1.0.9...v1.0.10) (2024-05-30)
 
 ### Bug Fixes
