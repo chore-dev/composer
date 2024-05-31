@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.12](https://github.com/chore-dev/composer/compare/v1.0.11...v1.0.12) (2024-05-31)
+
+### Bug Fixes
+
+- **commitlint:** relocate commitlint dependencies to devDependencies
+  ([ae4e166](https://github.com/chore-dev/composer/commit/ae4e166e2f272f06c93aa88ac2c20e7f966b28d6))
+
 ## [1.0.11](https://github.com/chore-dev/composer/compare/v1.0.10...v1.0.11) (2024-05-31)
 
 ## [1.0.10](https://github.com/chore-dev/composer/compare/v1.0.9...v1.0.10) (2024-05-30)
