@@ -51,7 +51,8 @@ const recommends = () => {
 
   return lines([
     'esLint.configs.recommended,',
-    condition(typescript, '...tsESLint.configs.recommended,'),
+    condition(typescript, 'tsESLint.configs.strict,'),
+    condition(typescript, 'tsESLint.configs.stylistic,'),
     condition(prettier, 'prettierRecommended,'),
     condition(framework === 'vue', `...vueESLint.configs['flat/recommended'],`)
   ]);
@@ -149,10 +150,11 @@ const main = () => {
             'ts-nocheck': 'allow-with-description'
           })
         ],
-        ['@typescript-eslint/ban-types', 1],
+        ['@typescript-eslint/consistent-type-definitions', 0],
         ['@typescript-eslint/explicit-module-boundary-types', 0],
         ['@typescript-eslint/no-empty-interface', 0],
         ['@typescript-eslint/no-explicit-any', 2],
+        ['@typescript-eslint/no-restricted-types', 2, JSON.stringify({ types: {} })],
         ['@typescript-eslint/no-unused-vars', 2, JSON.stringify({ argsIgnorePattern: '^_' })]
       ]) || [])
     ] as Array<[string, number, string?]>
@@ -213,6 +215,7 @@ const createESLintConfig = () => {
     imports(),
     '',
     notes(),
+    '/** @type {ReturnType<typeof import("typescript-eslint").config>} */',
     'const config = tsESLint.config(',
     indent([ignores(), recommends(), main()]),
     ');',
