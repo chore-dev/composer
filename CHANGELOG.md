@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/chore-dev/composer/compare/v1.0.12...v1.1.0) (2024-12-20)
+
+### Bug Fixes
+
+- fixed errors caused by updated tseslint
+  ([8453542](https://github.com/chore-dev/composer/commit/8453542cab430dfd7ca29cc300baac4f41454fd2))
+
+### Restructured
+
+- prepare for husky v10
+  ([ef227d0](https://github.com/chore-dev/composer/commit/ef227d08ebece7c589b92dfa9514de140deb640e))
+
 ## [1.0.12](https://github.com/chore-dev/composer/compare/v1.0.11...v1.0.12) (2024-05-31)
 
 ### Bug Fixes
