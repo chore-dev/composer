@@ -8,9 +8,6 @@ const createPreCommitHook = () => {
   const config = createConfig ? ' --config lint-staged.config.js' : '';
 
   return [
-    '#!/usr/bin/env sh',
-    '',
-    '. "$(dirname -- "$0")/_/husky.sh"',
     '. "$(dirname -- "$0")/common.sh"',
     '',
     `${PACKAGE_MANAGERS[getAnswers().packageManager].scripts.execute} lint-staged${config}`
